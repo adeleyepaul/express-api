@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {ReportType, data} from "src/data";
+import {ReportType, data} from 'src/data';
 import { v4 as uuid } from 'uuid';
 
 interface Report {amount: number, source: string}
@@ -13,7 +13,7 @@ export class AppService {
   getReportById(type: ReportType, id: string) {
     return data.report
     .filter((report) => report.type === type)
-    .find(report => report.id === id);
+    .find((report) => report.id === id);
   }
 
   createReport(type: ReportType, {amount, source}: Report){
@@ -23,7 +23,7 @@ export class AppService {
       amount,
       created_at: new Date(),
       updated_at: new Date(),
-      type: type === 'income' ? ReportType.INCOME : ReportType.EXPENSE,
+      type,
     };
     data.report.push(newReport);
     return newReport;
@@ -44,7 +44,7 @@ export class AppService {
       ...body,
       updated_at: new Date()
     };
-    return;
+    return data.report[reportIndex];
   }
 
   deleteReport(id: string) {

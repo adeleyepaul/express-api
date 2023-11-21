@@ -3,14 +3,9 @@ import { Controller, Get, Post, Put, Delete, Param, Body, HttpCode, ParseUUIDPip
 import {ReportType } from 'src/data';
 import { AppService } from './app.service';
 import { CreateReportDto } from './dtos/report.dtos'
-
-
 @Controller('report/:type')
 export class AppController {
-
-  constructor(
-    private readonly appService : AppService
-  ){}
+  constructor(private readonly appService: AppService){};
 
   @Get()
   getAllReport(@Param('type', new ParseEnumPipe(ReportType)) type: string) {
